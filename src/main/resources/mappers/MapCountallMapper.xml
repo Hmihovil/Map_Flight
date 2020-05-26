@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.flightmap.demo.Dao.MapCountallMapper" >
+  <resultMap id="BaseResultMap" type="com.flightmap.demo.Pojo.MapCountall" >
+    <constructor >
+      <idArg column="flight_data_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="icao" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="n" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lo" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="la" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="ang" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="alt" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gs" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="tc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="t" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mod_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dep" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="arr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    flight_data_id, icao, cid, n, lo, la, ang, alt, gs, tc, t, mod_number, dep, arr, create_time,
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from flight_data
+    where flight_data_id = #{flightDataId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from flight_data
+    where flight_data_id = #{flightDataId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.flightmap.demo.Pojo.MapCountall" >
+    insert into flight_data (flight_data_id, icao, cid,
+      n, lo, la, ang,
+      alt, gs, tc, t,
+      mod_number, dep, arr, create_time,
+      update_time)
+    values (#{flightDataId,jdbcType=BIGINT}, #{icao,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR},
+      #{n,jdbcType=VARCHAR}, #{lo,jdbcType=DOUBLE}, #{la,jdbcType=DOUBLE}, #{ang,jdbcType=INTEGER},
+      #{alt,jdbcType=INTEGER}, #{gs,jdbcType=INTEGER}, #{tc,jdbcType=VARCHAR}, #{t,jdbcType=INTEGER},
+      #{modNumber,jdbcType=VARCHAR}, #{dep,jdbcType=VARCHAR}, #{arr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertEachFlightData" parameterType="com.flightmap.demo.Pojo.MapCountall" >
+    insert into each_flight_data (flight_data_id, icao, cid,
+      n, lo, la, ang,
+      alt, gs, tc, t,
+      mod_number, dep, arr, create_time,
+      update_time)
+    values (#{flightDataId,jdbcType=BIGINT}, #{icao,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR},
+      #{n,jdbcType=VARCHAR}, #{lo,jdbcType=DOUBLE}, #{la,jdbcType=DOUBLE}, #{ang,jdbcType=INTEGER},
+      #{alt,jdbcType=INTEGER}, #{gs,jdbcType=INTEGER}, #{tc,jdbcType=VARCHAR}, #{t,jdbcType=INTEGER},
+      #{modNumber,jdbcType=VARCHAR}, #{dep,jdbcType=VARCHAR}, #{arr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.flightmap.demo.Pojo.MapCountall" >
+    insert into flight_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flightDataId != null" >
+        flight_data_id,
+      </if>
+      <if test="icao != null" >
+        icao,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="n != null" >
+        n,
+      </if>
+      <if test="lo != null" >
+        lo,
+      </if>
+      <if test="la != null" >
+        la,
+      </if>
+      <if test="ang != null" >
+        ang,
+      </if>
+      <if test="alt != null" >
+        alt,
+      </if>
+      <if test="gs != null" >
+        gs,
+      </if>
+      <if test="tc != null" >
+        tc,
+      </if>
+      <if test="t != null" >
+        t,
+      </if>
+      <if test="modNumber != null" >
+        `mod_number`,
+      </if>
+      <if test="dep != null" >
+        dep,
+      </if>
+      <if test="arr != null" >
+        arr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flightDataId != null" >
+        #{flightDataId,jdbcType=BIGINT},
+      </if>
+      <if test="icao != null" >
+        #{icao,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="n != null" >
+        #{n,jdbcType=VARCHAR},
+      </if>
+      <if test="lo != null" >
+        #{lo,jdbcType=DOUBLE},
+      </if>
+      <if test="la != null" >
+        #{la,jdbcType=DOUBLE},
+      </if>
+      <if test="ang != null" >
+        #{ang,jdbcType=INTEGER},
+      </if>
+      <if test="alt != null" >
+        #{alt,jdbcType=INTEGER},
+      </if>
+      <if test="gs != null" >
+        #{gs,jdbcType=INTEGER},
+      </if>
+      <if test="tc != null" >
+        #{tc,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        #{t,jdbcType=INTEGER},
+      </if>
+      <if test="modNumber != null" >
+        #{`modNumber`,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null" >
+        #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="arr != null" >
+        #{arr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.flightmap.demo.Pojo.MapCountall" >
+    update flight_data
+    <set >
+      <if test="icao != null" >
+        icao = #{icao,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=VARCHAR},
+      </if>
+      <if test="n != null" >
+        n = #{n,jdbcType=VARCHAR},
+      </if>
+      <if test="lo != null" >
+        lo = #{lo,jdbcType=DOUBLE},
+      </if>
+      <if test="la != null" >
+        la = #{la,jdbcType=DOUBLE},
+      </if>
+      <if test="ang != null" >
+        ang = #{ang,jdbcType=INTEGER},
+      </if>
+      <if test="alt != null" >
+        alt = #{alt,jdbcType=INTEGER},
+      </if>
+      <if test="gs != null" >
+        gs = #{gs,jdbcType=INTEGER},
+      </if>
+      <if test="tc != null" >
+        tc = #{tc,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        t = #{t,jdbcType=INTEGER},
+      </if>
+      <if test="modNumber != null" >
+        mod_number = #{modNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dep != null" >
+        dep = #{dep,jdbcType=VARCHAR},
+      </if>
+      <if test="arr != null" >
+        arr = #{arr,jdbcType=VARCHAR},
+      </if>
+
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where flight_data_id = #{flightDataId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByIcao" parameterType="com.flightmap.demo.Pojo.MapCountall" >
+    update flight_data
+    set
+      cid = #{cid,jdbcType=VARCHAR},
+      n = #{n,jdbcType=VARCHAR},
+      lo = #{lo,jdbcType=DOUBLE},
+      la = #{la,jdbcType=DOUBLE},
+      ang = #{ang,jdbcType=INTEGER},
+      alt = #{alt,jdbcType=INTEGER},
+      gs = #{gs,jdbcType=INTEGER},
+      tc = #{tc,jdbcType=VARCHAR},
+      t = #{t,jdbcType=INTEGER},
+      mod_number = #{modNumber,jdbcType=VARCHAR},
+      dep = #{dep,jdbcType=VARCHAR},
+      arr = #{arr,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where icao = #{icao,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByIcao" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from flight_data
+    where  icao = #{icao,jdbcType=VARCHAR}
+
+  </select>
+  <select id="queryByRange" resultMap="BaseResultMap" parameterType="DOUBLE" >
+    select
+    <include refid="Base_Column_List" />
+    from flight_data
+    where update_time= (select max(update_time) from flight_data ) and lo&gt;=#{lomin,jdbcType=DOUBLE}
+    and lo&lt;=#{lomax,jdbcType=DOUBLE} and la&gt;=#{lamin,jdbcType=DOUBLE}
+    and la&lt;=#{lamax,jdbcType=DOUBLE};
+
+  </select>
+  <select id="queryEachDataByIcao" resultMap="BaseResultMap" parameterType="String" >
+    select
+    <include refid="Base_Column_List" />
+    from each_flight_data
+    where icao= #{icao,jdbcType=VARCHAR} order by create_time desc ;
+  </select>
+
+  <select id="countNumberCurrent" resultType="INTEGER">
+    select
+    COUNT(icao)
+    from flight_data
+    where update_time = (select max(update_time) from flight_data );
+
+  </select>
+
+  <select id="countNumberToday" resultType="INTEGER">
+    select
+    COUNT(icao)
+    from flight_data
+    where to_days(create_time) = to_days(now());
+
+  </select>
+
+
+</mapper>
